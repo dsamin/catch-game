@@ -4,6 +4,8 @@ import styled from 'styled-components';
 const GameContainer = styled.div`
   width: 100vw;
   height: 100vh;
+  height: -webkit-fill-available;
+  min-height: -webkit-fill-available;
   background: linear-gradient(to bottom, #87CEFA, #FFD700);
   display: flex;
   justify-content: center;
@@ -15,6 +17,7 @@ const GameContainer = styled.div`
   text-align: center;
   touch-action: none;
   user-select: none;
+  -webkit-user-select: none;
 `;
 
 const Basket = styled.div`
@@ -25,10 +28,13 @@ const Basket = styled.div`
   height: 50px;
   background: brown;
   border-radius: 10px;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
   
   @media (max-width: 768px) {
     width: 60px;
     height: 40px;
+    bottom: env(safe-area-inset-bottom, 10px);
   }
 `;
 
@@ -99,30 +105,33 @@ export default function JaydenCatchGame() {
     };
 
     const handleTouchStart = (e) => {
+      e.preventDefault();
       setTouchStartX(e.touches[0].clientX);
     };
 
     const handleTouchMove = (e) => {
+      e.preventDefault();
       if (touchStartX !== null) {
         const touchX = e.touches[0].clientX;
         const diff = touchX - touchStartX;
         
         let newPosition = basketPosition + diff;
-        newPosition = Math.max(0, Math.min(window.innerWidth - 100, newPosition));
+        newPosition = Math.max(0, Math.min(window.innerWidth - 80, newPosition));
         
         setBasketPosition(newPosition);
         setTouchStartX(touchX);
       }
     };
 
-    const handleTouchEnd = () => {
+    const handleTouchEnd = (e) => {
+      e.preventDefault();
       setTouchStartX(null);
     };
 
     window.addEventListener('keydown', handleKeyPress);
-    window.addEventListener('touchstart', handleTouchStart);
-    window.addEventListener('touchmove', handleTouchMove);
-    window.addEventListener('touchend', handleTouchEnd);
+    window.addEventListener('touchstart', handleTouchStart, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('touchend', handleTouchEnd, { passive: false });
 
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
