@@ -4,13 +4,15 @@ import styled from 'styled-components';
 const GameContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  height: -webkit-fill-available;
+  height: 100dvh;
   min-height: -webkit-fill-available;
   background: linear-gradient(to bottom, #87CEFA, #FFD700);
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
   overflow: hidden;
   font-family: Arial, sans-serif;
   flex-direction: column;
@@ -21,8 +23,8 @@ const GameContainer = styled.div`
 `;
 
 const Basket = styled.div`
-  position: absolute;
-  bottom: 10px;
+  position: fixed;
+  bottom: env(safe-area-inset-bottom, 20px);
   left: ${props => props.position}px;
   width: 80px;
   height: 50px;
@@ -30,11 +32,14 @@ const Basket = styled.div`
   border-radius: 10px;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
+  z-index: 1000;
   
   @media (max-width: 768px) {
     width: 60px;
     height: 40px;
-    bottom: env(safe-area-inset-bottom, 10px);
+    background: #8B4513;
+    border: 3px solid #FFD700;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
   }
 `;
 
@@ -106,20 +111,22 @@ export default function JaydenCatchGame() {
 
     const handleTouchStart = (e) => {
       e.preventDefault();
-      setTouchStartX(e.touches[0].clientX);
+      const touch = e.touches[0];
+      setTouchStartX(touch.clientX);
     };
 
     const handleTouchMove = (e) => {
       e.preventDefault();
       if (touchStartX !== null) {
-        const touchX = e.touches[0].clientX;
-        const diff = touchX - touchStartX;
+        const touch = e.touches[0];
+        const diff = touch.clientX - touchStartX;
         
         let newPosition = basketPosition + diff;
-        newPosition = Math.max(0, Math.min(window.innerWidth - 80, newPosition));
+        const maxWidth = window.innerWidth - (window.innerWidth <= 768 ? 60 : 80);
+        newPosition = Math.max(0, Math.min(maxWidth, newPosition));
         
         setBasketPosition(newPosition);
-        setTouchStartX(touchX);
+        setTouchStartX(touch.clientX);
       }
     };
 
@@ -128,12 +135,24 @@ export default function JaydenCatchGame() {
       setTouchStartX(null);
     };
 
+    const basket = document.querySelector('.basket');
+    if (basket) {
+      basket.addEventListener('touchstart', handleTouchStart, { passive: false });
+      basket.addEventListener('touchmove', handleTouchMove, { passive: false });
+      basket.addEventListener('touchend', handleTouchEnd, { passive: false });
+    }
+
     window.addEventListener('keydown', handleKeyPress);
     window.addEventListener('touchstart', handleTouchStart, { passive: false });
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
     window.addEventListener('touchend', handleTouchEnd, { passive: false });
 
     return () => {
+      if (basket) {
+        basket.removeEventListener('touchstart', handleTouchStart);
+        basket.removeEventListener('touchmove', handleTouchMove);
+        basket.removeEventListener('touchend', handleTouchEnd);
+      }
       window.removeEventListener('keydown', handleKeyPress);
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
@@ -166,7 +185,12 @@ export default function JaydenCatchGame() {
   useEffect(() => {
     setFallingObjects(prev =>
       prev.filter(obj => {
-        if (obj.y > window.innerHeight - 70 && obj.x > basketPosition && obj.x < basketPosition + 80) {
+        const basketWidth = window.innerWidth <= 768 ? 60 : 80;
+        const collisionY = window.innerHeight - (window.innerWidth <= 768 ? 60 : 70);
+        
+        if (obj.y > collisionY && 
+            obj.x > basketPosition - 20 &&
+            obj.x < basketPosition + basketWidth + 20) {
           if (obj.type === 'bad') {
             setScore(prevScore => Math.max(0, prevScore - 1));
             setMessage("Oops! Avoid those bad objects! ⚠️");
@@ -196,7 +220,7 @@ export default function JaydenCatchGame() {
           {obj.type === 'bad' ? '⚠️' : obj.type === 'bonus' ? '🌟' : '🍎'}
         </FallingObject>
       ))}
-      <Basket position={basketPosition} />
+      <Basket className="basket" position={basketPosition} />
     </GameContainer>
   );
 }
