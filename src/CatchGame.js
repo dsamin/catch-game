@@ -6,7 +6,14 @@ const GameContainer = styled.div`
   height: 100vh;
   height: 100dvh;
   min-height: -webkit-fill-available;
-  background: linear-gradient(to bottom, #87CEFA, #FFD700);
+  background: linear-gradient(
+    45deg, 
+    #E6E6FA, /* Lavender */
+    #FFC0CB, /* Pink */
+    #E6E6FA  /* Lavender */
+  );
+  background-size: 200% 200%;
+  animation: gradient 10s ease infinite;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,12 +21,26 @@ const GameContainer = styled.div`
   left: 0;
   top: 0;
   overflow: hidden;
-  font-family: Arial, sans-serif;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
   flex-direction: column;
   text-align: center;
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  &::before {
+    content: "✨";
+    position: absolute;
+    animation: sparkle 2s infinite;
+    font-size: 20px;
+    opacity: 0.7;
+  }
 `;
 
 const Basket = styled.div`
@@ -28,18 +49,28 @@ const Basket = styled.div`
   left: ${props => props.position}px;
   width: 80px;
   height: 50px;
-  background: brown;
-  border-radius: 10px;
+  background: #FF69B4; /* Hot Pink */
+  border-radius: 20px;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   z-index: 1000;
+  border: 3px solid #FFF;
+  box-shadow: 0 0 10px rgba(255,105,180,0.5);
+  
+  &::before {
+    content: "🎀";
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   
   @media (max-width: 768px) {
     width: 60px;
     height: 40px;
-    background: #8B4513;
-    border: 3px solid #FFD700;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    background: #FF69B4;
+    border: 3px solid #FFF;
+    box-shadow: 0 0 10px rgba(255,105,180,0.5);
   }
 `;
 
@@ -69,9 +100,12 @@ const Score = styled.div`
   left: 20px;
   font-size: 24px;
   font-weight: bold;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 10px;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(255,105,180,0.3);
+  border: 2px solid #FF69B4;
+  color: #FF69B4;
 `;
 
 const Timer = styled.div`
@@ -80,24 +114,32 @@ const Timer = styled.div`
   right: 20px;
   font-size: 24px;
   font-weight: bold;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 10px;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(255,105,180,0.3);
+  border: 2px solid #FF69B4;
+  color: #FF69B4;
 `;
 
 const Message = styled.div`
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #fff;
+  color: #FF69B4;
+  text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(255,105,180,0.3);
 `;
 
-export default function JaydenCatchGame() {
+export default function AadiraCatchGame() {
   const [basketPosition, setBasketPosition] = useState(200);
   const [fallingObjects, setFallingObjects] = useState([]);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
-  const [message, setMessage] = useState("Let's go Jaden Rio! Catch them all! 🍎");
+  const [message, setMessage] = useState("Let's go Aadira! Catch the strawberries! 🍓");
   const [touchStartX, setTouchStartX] = useState(null);
 
   useEffect(() => {
@@ -193,14 +235,14 @@ export default function JaydenCatchGame() {
             obj.x < basketPosition + basketWidth + 20) {
           if (obj.type === 'bad') {
             setScore(prevScore => Math.max(0, prevScore - 1));
-            setMessage("Oops! Avoid those bad objects! ⚠️");
+            setMessage("Oops! Avoid the storm clouds! ⚠️");
           } else if (obj.type === 'bonus') {
             setScore(prevScore => prevScore + 3);
-            setMessage("Awesome! Bonus points! 🌟");
+            setMessage("Amazing Aadira! Bonus points! ✨");
           } else {
             setScore(prevScore => prevScore + 1);
             if (score % 5 === 0) {
-              setMessage("Great job Jaden Rio! Keep going! 🎉");
+              setMessage("Wonderful job Aadira! Keep sparkling! 🌟");
             }
           }
           return false;
@@ -213,11 +255,11 @@ export default function JaydenCatchGame() {
   return (
     <GameContainer>
       <Message>{message}</Message>
-      <Score>🍎 Score: {score}</Score>
+      <Score>🍓 Score: {score}</Score>
       <Timer>⏳ Time: {timeLeft}s</Timer>
       {fallingObjects.map((obj, index) => (
         <FallingObject key={index} x={obj.x} y={obj.y} type={obj.type}>
-          {obj.type === 'bad' ? '⚠️' : obj.type === 'bonus' ? '🌟' : '🍎'}
+          {obj.type === 'bad' ? '🌩️' : obj.type === 'bonus' ? '🌟' : '🍓'}
         </FallingObject>
       ))}
       <Basket className="basket" position={basketPosition} />
