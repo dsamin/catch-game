@@ -13,6 +13,8 @@ const GameContainer = styled.div`
   font-family: Arial, sans-serif;
   flex-direction: column;
   text-align: center;
+  touch-action: none;
+  user-select: none;
 `;
 
 const Basket = styled.div`
@@ -23,6 +25,11 @@ const Basket = styled.div`
   height: 50px;
   background: brown;
   border-radius: 10px;
+  
+  @media (max-width: 768px) {
+    width: 60px;
+    height: 40px;
+  }
 `;
 
 const FallingObject = styled.div`
@@ -36,6 +43,13 @@ const FallingObject = styled.div`
   line-height: 40px;
   font-size: 24px;
   background: ${props => (props.type === 'bad' ? 'black' : props.type === 'bonus' ? 'gold' : 'red')};
+  
+  @media (max-width: 768px) {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+  }
 `;
 
 const Score = styled.div`
@@ -72,7 +86,8 @@ export default function JaydenCatchGame() {
   const [fallingObjects, setFallingObjects] = useState([]);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
-  const [message, setMessage] = useState("Let's go Jayden! Catch them all! 🍎");
+  const [message, setMessage] = useState("Let's go Jaden Rio! Catch them all! 🍎");
+  const [touchStartX, setTouchStartX] = useState(null);
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -82,9 +97,40 @@ export default function JaydenCatchGame() {
         setBasketPosition(prev => prev + 20);
       }
     };
+
+    const handleTouchStart = (e) => {
+      setTouchStartX(e.touches[0].clientX);
+    };
+
+    const handleTouchMove = (e) => {
+      if (touchStartX !== null) {
+        const touchX = e.touches[0].clientX;
+        const diff = touchX - touchStartX;
+        
+        let newPosition = basketPosition + diff;
+        newPosition = Math.max(0, Math.min(window.innerWidth - 100, newPosition));
+        
+        setBasketPosition(newPosition);
+        setTouchStartX(touchX);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      setTouchStartX(null);
+    };
+
     window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [basketPosition]);
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove);
+    window.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [basketPosition, touchStartX]);
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -121,7 +167,7 @@ export default function JaydenCatchGame() {
           } else {
             setScore(prevScore => prevScore + 1);
             if (score % 5 === 0) {
-              setMessage("Great job Jayden! Keep going! 🎉");
+              setMessage("Great job Jaden Rio! Keep going! 🎉");
             }
           }
           return false;

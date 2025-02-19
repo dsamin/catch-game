@@ -5,9 +5,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none; /* Prevents pull-to-refresh and bounce effects */
+  position: fixed; /* Prevents mobile browser's address bar from showing/hiding */
+  width: 100%;
+  height: 100%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Prevent any unwanted touch behaviors */
+* {
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
 }
