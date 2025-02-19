@@ -1,59 +1,54 @@
-# 🍎 Jaden Rio's Catch Game 🎮
+# 🍓 Aadira's Strawberry Catch Game 🎮
 
-Jaden Rio's Catch Game is a fun and interactive web game where Jaden Rio catches falling objects while avoiding bad ones. The game encourages Jaden Rio with positive messages and challenges him with increasing difficulty.
+Aadira's Strawberry Catch Game is a fun and interactive web game where Aadira catches falling strawberries while avoiding storm clouds. The game encourages Aadira with positive messages and sparkly effects!
 
 ## 🚀 Features
-- 🏆 **Catch Fruits**: Move the basket left and right to catch falling apples.
+- 🏆 **Catch Fruits**: Move the basket left and right to catch falling strawberries.
 - ⚠️ **Avoid Bad Objects**: Stay away from obstacles that reduce your score.
 - 🌟 **Bonus Objects**: Catch golden stars for extra points!
 - ⏳ **Timer-Based Challenge**: The game ends when the timer runs out.
-- 🎉 **Encouraging Messages**: Motivational messages appear as Jaden Rio progresses.
+- 🎉 **Encouraging Messages**: Motivational messages appear as Aadira progresses.
+
+## 🎮 Play Online
+[Click here to play Aadira's Strawberry Catch Game](https://dsamin.github.io/catch-game)
 
 ## 📌 How to Play
-1. Use the **left** and **right arrow keys** to move the basket.
-2. **Catch apples** 🍎 to earn points.
-3. **Avoid bad objects** ⚠️ or lose points.
-4. **Catch bonus objects** 🌟 to earn extra points!
-5. Keep playing until the timer runs out.
+1. Use the **left** and **right arrow keys** to move the basket (or touch and drag on mobile)
+2. **Catch strawberries** 🍓 to earn points
+3. **Avoid storm clouds** 🌩️ or lose points
+4. **Catch bonus stars** 🌟 to earn extra points!
+5. Keep playing until the timer runs out
 
 ## 🔧 Installation & Running Locally
-To play the game locally:
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR-USERNAME/catch-game.git
+git clone https://github.com/dsamin/catch-game.git
 cd catch-game
 
 # Install dependencies
 npm install
 
-# Start the game
+# Start the game locally
 npm start
 ```
 The game will open at `http://localhost:3000/`
 
-## 🌍 Deploying to GitHub Pages
-1. Ensure `gh-pages` is installed:
+## 🌍 Deploying Updates
+1. Make your changes
+2. Commit and push to your branch:
    ```bash
-   npm install gh-pages --save-dev
+   git add .
+   git commit -m "Your update message"
+   git push origin your-branch-name
    ```
-2. Add deployment scripts to `package.json`:
-   ```json
-   "scripts": {
-     "predeploy": "npm run build",
-     "deploy": "gh-pages -d build"
-   }
-   ```
-3. Deploy the game:
+3. Deploy to GitHub Pages:
    ```bash
    npm run deploy
    ```
 4. The game will be live at:
    ```
-https://YOUR-USERNAME.github.io/catch-game
+   https://dsamin.github.io/catch-game
    ```
-
-## 🎮 Play Online
-[Click here to play Jaden Rio's Catch Game](https://YOUR-USERNAME.github.io/catch-game)
 
 ## 🛠️ Technologies Used
 - React.js ⚛️
@@ -61,5 +56,5 @@ https://YOUR-USERNAME.github.io/catch-game
 - GitHub Pages 🌍
 
 ## 📜 License
-This game is developed for Jaden Rio and is free to use! 😊
+This game is developed for Aadira and is free to use! 🎀
 
