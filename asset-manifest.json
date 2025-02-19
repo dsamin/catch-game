@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/catch-game/static/css/main.a7e64a0e.css",
-    "main.js": "/catch-game/static/js/main.92be0ba7.js",
+    "main.js": "/catch-game/static/js/main.843fb243.js",
     "static/js/453.48deca9d.chunk.js": "/catch-game/static/js/453.48deca9d.chunk.js",
     "index.html": "/catch-game/index.html",
     "main.a7e64a0e.css.map": "/catch-game/static/css/main.a7e64a0e.css.map",
-    "main.92be0ba7.js.map": "/catch-game/static/js/main.92be0ba7.js.map",
+    "main.843fb243.js.map": "/catch-game/static/js/main.843fb243.js.map",
     "453.48deca9d.chunk.js.map": "/catch-game/static/js/453.48deca9d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a7e64a0e.css",
-    "static/js/main.92be0ba7.js"
+    "static/js/main.843fb243.js"
   ]
 }
