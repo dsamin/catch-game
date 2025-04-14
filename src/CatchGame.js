@@ -97,7 +97,7 @@ export default function JaydenCatchGame() {
   const [fallingObjects, setFallingObjects] = useState([]);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
-  const [message, setMessage] = useState("Let's go Jaden Rio! Catch them all! 🍎");
+  const [message, setMessage] = useState("Let's go Jaden Rio! Catch them all! 🍊");
   const [touchStartX, setTouchStartX] = useState(null);
 
   useEffect(() => {
@@ -213,11 +213,11 @@ export default function JaydenCatchGame() {
   return (
     <GameContainer>
       <Message>{message}</Message>
-      <Score>🍎 Score: {score}</Score>
+      <Score>🍊 Score: {score}</Score>
       <Timer>⏳ Time: {timeLeft}s</Timer>
       {fallingObjects.map((obj, index) => (
         <FallingObject key={index} x={obj.x} y={obj.y} type={obj.type}>
-          {obj.type === 'bad' ? '⚠️' : obj.type === 'bonus' ? '🌟' : '🍎'}
+          {obj.type === 'bad' ? '⚠️' : obj.type === 'bonus' ? '🌟' : '🍊'}
         </FallingObject>
       ))}
       <Basket className="basket" position={basketPosition} />
