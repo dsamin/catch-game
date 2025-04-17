@@ -1,19 +1,19 @@
-# 🍎 Jaden Rio's Catch Game 🎮
+# 🍎 Jayden Rio's Catch Game 🎮
 
-Jaden Rio's Catch Game is a fun and interactive web game where Jaden Rio catches falling objects while avoiding bad ones. The game encourages Jaden Rio with positive messages and challenges him with increasing difficulty.
+Jayden Rio's Catch Game is a fun and interactive web game where Jayden Rio catches falling objects while avoiding bad ones. The game encourages Jayden Rio with positive messages and challenges him with increasing difficulty.
 
 ## 🚀 Features
 - 🏆 **Catch Fruits**: Move the basket left and right to catch falling apples.
 - ⚠️ **Avoid Bad Objects**: Stay away from obstacles that reduce your score.
-- 🌟 **Bonus Objects**: Catch golden stars for extra points!
+- ✨ **Bonus Objects**: Catch sparkles for extra points!
 - ⏳ **Timer-Based Challenge**: The game ends when the timer runs out.
-- 🎉 **Encouraging Messages**: Motivational messages appear as Jaden Rio progresses.
+- 🎉 **Encouraging Messages**: Motivational messages appear as Jayden Rio progresses.
 
 ## 📌 How to Play
 1. Use the **left** and **right arrow keys** to move the basket.
 2. **Catch apples** 🍎 to earn points.
 3. **Avoid bad objects** ⚠️ or lose points.
-4. **Catch bonus objects** 🌟 to earn extra points!
+4. **Catch bonus objects** ✨ to earn extra points!
 5. Keep playing until the timer runs out.
 
 ## 🔧 Installation & Running Locally
@@ -53,7 +53,7 @@ https://YOUR-USERNAME.github.io/catch-game
    ```
 
 ## 🎮 Play Online
-[Click here to play Jaden Rio's Catch Game](https://YOUR-USERNAME.github.io/catch-game)
+[Click here to play Jayden Rio's Catch Game](https://YOUR-USERNAME.github.io/catch-game)
 
 ## 🛠️ Technologies Used
 - React.js ⚛️
@@ -61,5 +61,4 @@ https://YOUR-USERNAME.github.io/catch-game
 - GitHub Pages 🌍
 
 ## 📜 License
-This game is developed for Jaden Rio and is free to use! 😊
-
+This game is developed for Jayden Rio and is free to use! 😊
