@@ -5,7 +5,7 @@ Jaden Rio's Catch Game is a fun and interactive web game where Jaden Rio catches
 ## 🚀 Features
 - 🏆 **Catch Fruits**: Move the basket left and right to catch falling apples.
 - ⚠️ **Avoid Bad Objects**: Stay away from obstacles that reduce your score.
-- 🌟 **Bonus Objects**: Catch golden stars for extra points!
+- ✨ **Bonus Objects**: Catch sparkles for extra points!
 - ⏳ **Timer-Based Challenge**: The game ends when the timer runs out.
 - 🎉 **Encouraging Messages**: Motivational messages appear as Jaden Rio progresses.
 
@@ -13,7 +13,7 @@ Jaden Rio's Catch Game is a fun and interactive web game where Jaden Rio catches
 1. Use the **left** and **right arrow keys** to move the basket.
 2. **Catch apples** 🍎 to earn points.
 3. **Avoid bad objects** ⚠️ or lose points.
-4. **Catch bonus objects** 🌟 to earn extra points!
+4. **Catch bonus objects** ✨ to earn extra points!
 5. Keep playing until the timer runs out.
 
 ## 🔧 Installation & Running Locally
@@ -62,4 +62,3 @@ https://YOUR-USERNAME.github.io/catch-game
 
 ## 📜 License
 This game is developed for Jaden Rio and is free to use! 😊
-
