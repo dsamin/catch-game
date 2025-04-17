@@ -196,7 +196,7 @@ export default function JaydenCatchGame() {
             setMessage("Oops! Avoid those bad objects! ⚠️");
           } else if (obj.type === 'bonus') {
             setScore(prevScore => prevScore + 3);
-            setMessage("Awesome! Bonus points! 🌟");
+            setMessage("Awesome! Bonus points! ✨");
           } else {
             setScore(prevScore => prevScore + 1);
             if (score % 5 === 0) {
@@ -217,7 +217,7 @@ export default function JaydenCatchGame() {
       <Timer>⏳ Time: {timeLeft}s</Timer>
       {fallingObjects.map((obj, index) => (
         <FallingObject key={index} x={obj.x} y={obj.y} type={obj.type}>
-          {obj.type === 'bad' ? '⚠️' : obj.type === 'bonus' ? '🌟' : '🍎'}
+          {obj.type === 'bad' ? '⚠️' : obj.type === 'bonus' ? '✨' : '🍎'}
         </FallingObject>
       ))}
       <Basket className="basket" position={basketPosition} />
